@@ -1,0 +1,25 @@
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
+namespace OrderProject.Models
+{
+    public class Order : Entity
+    {
+        [Required]
+        [DisplayName("Description")]
+        public string Description { get; set; }
+
+        [Required]
+        [DisplayName("OutsourcingCompany")]
+        public OutsourcingCompany OutsourcingCompany { get; set; }
+
+        [Required]
+        [DisplayName("Contractors")]
+        public List<Contractor> Contractors { get; set; }
+
+        [Required]
+        [DisplayName("Customer")]
+        public Customer Customer { get; set; }
+    }
+}
