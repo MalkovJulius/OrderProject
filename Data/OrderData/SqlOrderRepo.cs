@@ -5,6 +5,13 @@ namespace OrderProject.Data.OrderData
 {
     public class SqlOrderRepo : IOrderRepo
     {
+        private readonly Context _context;
+
+        public SqlOrderRepo(Context context)
+        {
+            _context = context;
+        }
+
         public void CreateOrder(Order command)
         {
             throw new System.NotImplementedException();

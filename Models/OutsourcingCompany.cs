@@ -7,9 +7,9 @@ namespace OrderProject.Models
     public class OutsourcingCompany : Entity
     {
         [DisplayName("Employees")]
-        public List<Contractor> Employees { get; set; }
+        public ICollection<Contractor> Employees { get; set; }
 
         [DisplayName("Orders")]
-        public List<Order> Orders { get; set; }
+        public ICollection<Order> Orders { get; set; }
     }
 }

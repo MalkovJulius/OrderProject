@@ -5,6 +5,13 @@ namespace OrderProject.Data.CustomerData
 {
     public class SqlCustomerRepo : ICustomerRepo
     {
+        private readonly Context _context;
+
+        public SqlCustomerRepo(Context context)
+        {
+            _context = context;
+        }
+
         public void CreateCustomer(Customer command)
         {
             throw new System.NotImplementedException();

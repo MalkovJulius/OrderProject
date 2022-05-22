@@ -16,7 +16,7 @@ namespace OrderProject.Models
 
         [Required]
         [DisplayName("Contractors")]
-        public List<Contractor> Contractors { get; set; }
+        public ICollection<Contractor> Contractors { get; set; }
 
         [Required]
         [DisplayName("Customer")]

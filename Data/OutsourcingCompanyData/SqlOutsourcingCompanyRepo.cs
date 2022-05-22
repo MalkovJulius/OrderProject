@@ -5,6 +5,13 @@ namespace OrderProject.Data.OutsourcingCompanyData
 {
     public class SqlOutsourcingCompanyRepo : IOutsourcingCompanyRepo
     {
+        private readonly Context _context;
+
+        public SqlOutsourcingCompanyRepo(Context context)
+        {
+            _context = context;
+        }
+
         public void CreateCompany(OutsourcingCompany outsourcingCompany)
         {
             throw new System.NotImplementedException();
