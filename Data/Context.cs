@@ -12,7 +12,7 @@ namespace OrderProject.Data
 
         public Context(DbContextOptions<Context> dbContext) : base(dbContext)
         {
-
+            Database.Migrate();
         }
     }
 }
