@@ -1,5 +1,6 @@
 ﻿using OrderProject.Models;
-using System.Collections.Generic;
+using System;
+using System.Linq;
 
 namespace OrderProject.Data.OrderData
 {
@@ -12,29 +13,33 @@ namespace OrderProject.Data.OrderData
             _context = context;
         }
 
-        public void CreateOrder(Order command)
+        public IQueryable<Order> GetAllOrders()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void DeleteOrder(Order command)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<Order> GetAllOrders()
-        {
-            throw new System.NotImplementedException();
+            return _context.Orders;
         }
 
         public Order GetOrderById(int id)
         {
-            throw new System.NotImplementedException();
+            return _context.Orders.FirstOrDefault(o => o.Id == id);
         }
 
-        public void UpdateOrder(Order command)
+        public void CreateOrder(Order order)
         {
-            throw new System.NotImplementedException();
+            if (order == null) throw new ArgumentNullException(nameof(order));
+            _context.Orders.Add(order);
+        }
+
+        public void DeleteOrder(Order order)
+        {
+            if (order == null) throw new ArgumentNullException(nameof(order));
+            _context.Orders.Remove(order);
+        }              
+
+        public void UpdateOrder(Order order)
+        {
+            if (order == null) throw new ArgumentNullException(nameof(order));
+            _context.Orders.Update(order);
+            _context.SaveChanges();
         }
     }
 }

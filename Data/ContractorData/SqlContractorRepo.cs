@@ -1,5 +1,6 @@
 ﻿using OrderProject.Models;
-using System.Collections.Generic;
+using System;
+using System.Linq;
 
 namespace OrderProject.Data.ContractorData
 {
@@ -12,29 +13,33 @@ namespace OrderProject.Data.ContractorData
             _context = context;
         }
 
-        public void CreateContractor(Contractor command)
+        public IQueryable<Contractor> GetAllContractors()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void DeleteContractor(Contractor command)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<Contractor> GetAllContractors()
-        {
-            throw new System.NotImplementedException();
+            return _context.Contractors;
         }
 
         public Contractor GetContractorById(int id)
         {
-            throw new System.NotImplementedException();
+            return _context.Contractors.FirstOrDefault(c => c.Id == id);
         }
 
-        public void UpdateContractor(Contractor command)
+        public void CreateContractor(Contractor contractor)
         {
-            throw new System.NotImplementedException();
+            if (contractor == null) throw new ArgumentNullException(nameof(contractor));
+            _context.Contractors.Add(contractor);
+        }
+
+        public void DeleteContractor(Contractor contractor)
+        {
+            if (contractor == null) throw new ArgumentNullException(nameof(contractor));
+            _context.Contractors.Remove(contractor);
+        }        
+
+        public void UpdateContractor(Contractor contractor)
+        {
+            if (contractor == null) throw new ArgumentNullException(nameof(contractor));
+            _context.Contractors.Update(contractor);
+            _context.SaveChanges();
         }
     }
 }

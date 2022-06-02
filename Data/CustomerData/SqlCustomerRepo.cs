@@ -1,5 +1,6 @@
 ﻿using OrderProject.Models;
-using System.Collections.Generic;
+using System;
+using System.Linq;
 
 namespace OrderProject.Data.CustomerData
 {
@@ -12,29 +13,33 @@ namespace OrderProject.Data.CustomerData
             _context = context;
         }
 
-        public void CreateCustomer(Customer command)
+        public IQueryable<Customer> GetAllCustomers()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void DeleteCustomer(Customer command)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<Customer> GetAllCustomers()
-        {
-            throw new System.NotImplementedException();
+            return _context.Customers;
         }
 
         public Customer GetCustomerById(int id)
         {
-            throw new System.NotImplementedException();
+            return _context.Customers.FirstOrDefault(c => c.Id == id);
         }
 
-        public void UpdateCustomer(Customer command)
+        public void CreateCustomer(Customer customer)
         {
-            throw new System.NotImplementedException();
+            if (customer == null) throw new ArgumentNullException(nameof(customer));
+            _context.Customers.Add(customer);
+        }
+
+        public void DeleteCustomer(Customer customer)
+        {
+            if (customer == null) throw new ArgumentNullException(nameof(customer));
+            _context.Customers.Remove(customer);
+        }
+
+        public void UpdateCustomer(Customer customer)
+        {
+            if (customer == null) throw new ArgumentNullException(nameof(customer));
+            _context.Customers.Update(customer);
+            _context.SaveChanges();
         }
     }
 }

@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using OrderProject.Models;
 
 namespace OrderProject.Data.ContractorData
 {
     public interface IContractorRepo
-    {        
-        IEnumerable<Contractor> GetAllContractors();
+    {
+        IQueryable<Contractor> GetAllContractors();
         Contractor GetContractorById(int id);
-        void CreateContractor(Contractor command);
-        void UpdateContractor(Contractor command);
-        void DeleteContractor(Contractor command);
+        void CreateContractor(Contractor contractor);
+        void UpdateContractor(Contractor contractor);
+        void DeleteContractor(Contractor contractor);
     }
 }

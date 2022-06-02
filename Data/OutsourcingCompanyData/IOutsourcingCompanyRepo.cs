@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using OrderProject.Models;
 
 namespace OrderProject.Data.OutsourcingCompanyData
 {
     public interface IOutsourcingCompanyRepo
     {
-        IEnumerable<OutsourcingCompany> GetAllOutsourcingCompanies();
+        IQueryable<OutsourcingCompany> GetAllOutsourcingCompanies();
         OutsourcingCompany GetOutsourcingCompanyById(int id);
         void CreateCompany(OutsourcingCompany outsourcingCompany);
         void UpdateCompany(OutsourcingCompany outsourcingCompany);

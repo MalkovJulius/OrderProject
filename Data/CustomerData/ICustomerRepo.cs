@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using OrderProject.Models;
 
 namespace OrderProject.Data.CustomerData
 {
     public interface ICustomerRepo
     {
-        IEnumerable<Customer> GetAllCustomers();
+        IQueryable<Customer> GetAllCustomers();
         Customer GetCustomerById(int id);
-        void CreateCustomer(Customer command);
-        void UpdateCustomer(Customer command);
-        void DeleteCustomer(Customer command);
+        void CreateCustomer(Customer customer);
+        void UpdateCustomer(Customer customer);
+        void DeleteCustomer(Customer customer);
     }
 }

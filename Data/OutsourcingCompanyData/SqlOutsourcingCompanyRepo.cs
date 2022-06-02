@@ -1,5 +1,6 @@
 ﻿using OrderProject.Models;
-using System.Collections.Generic;
+using System;
+using System.Linq;
 
 namespace OrderProject.Data.OutsourcingCompanyData
 {
@@ -11,30 +12,33 @@ namespace OrderProject.Data.OutsourcingCompanyData
         {
             _context = context;
         }
-
-        public void CreateCompany(OutsourcingCompany outsourcingCompany)
+        public IQueryable<OutsourcingCompany> GetAllOutsourcingCompanies()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void DeleteCompany(OutsourcingCompany outsourcingCompany)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<OutsourcingCompany> GetAllOutsourcingCompanies()
-        {
-            throw new System.NotImplementedException();
+            return _context.OutsourcingCompanyes;
         }
 
         public OutsourcingCompany GetOutsourcingCompanyById(int id)
         {
-            throw new System.NotImplementedException();
+            return _context.OutsourcingCompanyes.FirstOrDefault(oc => oc.Id == id);
+        }
+
+        public void CreateCompany(OutsourcingCompany outsourcingCompany)
+        {
+            if (outsourcingCompany == null) throw new ArgumentNullException(nameof(outsourcingCompany));
+            _context.OutsourcingCompanyes.Add(outsourcingCompany);
+        }
+
+        public void DeleteCompany(OutsourcingCompany outsourcingCompany)
+        {
+            if (outsourcingCompany == null) throw new ArgumentNullException(nameof(outsourcingCompany));
+            _context.OutsourcingCompanyes.Remove(outsourcingCompany);
         }
 
         public void UpdateCompany(OutsourcingCompany outsourcingCompany)
         {
-            throw new System.NotImplementedException();
+            if (outsourcingCompany == null) throw new ArgumentNullException(nameof(outsourcingCompany));
+            _context.OutsourcingCompanyes.Update(outsourcingCompany);
+            _context.SaveChanges();
         }
     }
 }
