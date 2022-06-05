@@ -12,6 +12,7 @@ using OrderProject.Data.ContractorData;
 using OrderProject.Data.CustomerData;
 using OrderProject.Data.OrderData;
 using OrderProject.Data.OutsourcingCompanyData;
+using OrderProject.Middlewares;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +51,8 @@ namespace OrderProject
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseMiddleware<ExceptionHandlerMiddleware>();
 
             app.UseRouting();
 
