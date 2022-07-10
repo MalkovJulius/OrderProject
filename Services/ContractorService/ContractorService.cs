@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using OrderProject.Data.ContractorData;
 using OrderProject.Dtos;
 using OrderProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace OrderProject.Services.ContractorService
 {
@@ -19,45 +21,46 @@ namespace OrderProject.Services.ContractorService
             _mapper = mapper;
         }
 
-        public ContractorDto GetContractorDtoById(int id)
+        public async Task<ContractorDto> GetContractorDtoByIdAsync(int id)
         {
-            var contractor = _contractorRepo.GetContractorById(id);
+            var contractor = await _contractorRepo.GetContractorByIdAsync(id);
             return contractor == null?
                 throw new KeyNotFoundException(nameof(contractor)):
                 _mapper.Map<ContractorDto>(contractor);
         }
 
-        public IEnumerable<ContractorDto> GetAllContractorsDtos()
+        public async Task<IEnumerable<ContractorDto>> GetAllContractorsDtosAsync()
         {
-            var contractors = _contractorRepo.GetAllContractors();
+            //TODO: make pagination and other add-ons here and other services
+            var contractors = await _contractorRepo.GetAllContractors().ToListAsync();
             return _mapper.Map<IEnumerable<ContractorDto>>(contractors);
         }
 
-        public void CreateContractor(ContractorDto contractorDto)
+        public async Task CreateContractorAsync(ContractorDto contractorDto)
         {
             if (contractorDto == null) throw new ArgumentNullException(nameof(contractorDto));
 
             var contactor = _mapper.Map<Contractor>(contractorDto);
-            _contractorRepo.CreateContractor(contactor);
-        }     
+            await _contractorRepo.CreateContractorAsync(contactor);
+        }
 
-        public void UpdateContractor(ContractorDto contractorDto)
+        public async Task UpdateContractorAsync(ContractorDto contractorDto)
         {
             if (contractorDto == null) throw new ArgumentNullException(nameof(contractorDto));
             
-            var contractor = _contractorRepo.GetContractorById(contractorDto.Id);
+            var contractor = await _contractorRepo.GetContractorByIdAsync(contractorDto.Id);
             if (contractor == null) throw new KeyNotFoundException(nameof(contractor));
 
             _mapper.Map(contractorDto, contractor);
-            _contractorRepo.UpdateContractor(contractor);
+            await _contractorRepo.UpdateContractorAsync(contractor);
         }
 
-        public void DeleteContractor(int id)
+        public async Task DeleteContractorAsync(int id)
         {
-            var contractor = _contractorRepo.GetContractorById(id);
+            var contractor = await _contractorRepo.GetContractorByIdAsync(id);
             if (contractor == null) throw new KeyNotFoundException(nameof(contractor));
 
-            _contractorRepo.DeleteContractor(contractor);         
+            await _contractorRepo.DeleteContractorAsync(contractor);         
         }
     }
 }

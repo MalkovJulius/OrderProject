@@ -1,6 +1,8 @@
-﻿using OrderProject.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using OrderProject.Models;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace OrderProject.Data.OutsourcingCompanyData
 {
@@ -17,29 +19,29 @@ namespace OrderProject.Data.OutsourcingCompanyData
             return _context.OutsourcingCompanies;
         }
 
-        public OutsourcingCompany GetOutsourcingCompanyById(int id)
+        public async Task<OutsourcingCompany> GetOutsourcingCompanyByIdAsync(int id)
         {
-            return _context.OutsourcingCompanies.FirstOrDefault(oc => oc.Id == id);
+            return await _context.OutsourcingCompanies.FirstOrDefaultAsync(oc => oc.Id == id);
         }
 
-        public void CreateCompany(OutsourcingCompany outsourcingCompany)
+        public async Task CreateCompanyAsync(OutsourcingCompany outsourcingCompany)
         {
             if (outsourcingCompany == null) throw new ArgumentNullException(nameof(outsourcingCompany));
-            _context.OutsourcingCompanies.Add(outsourcingCompany);
+            await _context.OutsourcingCompanies.AddAsync(outsourcingCompany);
         }
 
-        public void DeleteCompany(OutsourcingCompany outsourcingCompany)
+        public async Task DeleteCompanyAsync(OutsourcingCompany outsourcingCompany)
         {
             if (outsourcingCompany == null) throw new ArgumentNullException(nameof(outsourcingCompany));
             _context.OutsourcingCompanies.Remove(outsourcingCompany);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void UpdateCompany(OutsourcingCompany outsourcingCompany)
+        public async Task UpdateCompanyAsync(OutsourcingCompany outsourcingCompany)
         {
             if (outsourcingCompany == null) throw new ArgumentNullException(nameof(outsourcingCompany));
             _context.OutsourcingCompanies.Update(outsourcingCompany);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿using OrderProject.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using OrderProject.Models;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace OrderProject.Data.OrderData
 {
@@ -18,29 +20,29 @@ namespace OrderProject.Data.OrderData
             return _context.Orders;
         }
 
-        public Order GetOrderById(int id)
+        public async Task<Order> GetOrderByIdAsync(int id)
         {
-            return _context.Orders.FirstOrDefault(o => o.Id == id);
+            return await _context.Orders.FirstOrDefaultAsync(o => o.Id == id);
         }
 
-        public void CreateOrder(Order order)
+        public async Task CreateOrderAsync(Order order)
         {
             if (order == null) throw new ArgumentNullException(nameof(order));
-            _context.Orders.Add(order);
+            await _context.Orders.AddAsync(order);
         }
 
-        public void DeleteOrder(Order order)
+        public async Task DeleteOrderAsync(Order order)
         {
             if (order == null) throw new ArgumentNullException(nameof(order));
             _context.Orders.Remove(order);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }              
 
-        public void UpdateOrder(Order order)
+        public async Task UpdateOrderAsync(Order order)
         {
             if (order == null) throw new ArgumentNullException(nameof(order));
             _context.Orders.Update(order);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

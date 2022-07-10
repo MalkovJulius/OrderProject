@@ -1,6 +1,8 @@
-﻿using OrderProject.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using OrderProject.Models;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace OrderProject.Data.CustomerData
 {
@@ -18,29 +20,29 @@ namespace OrderProject.Data.CustomerData
             return _context.Customers;
         }
 
-        public Customer GetCustomerById(int id)
+        public async Task<Customer> GetCustomerByIdAsync(int id)
         {
-            return _context.Customers.FirstOrDefault(c => c.Id == id);
+            return await _context.Customers.FirstOrDefaultAsync(c => c.Id == id);
         }
 
-        public void CreateCustomer(Customer customer)
+        public async Task CreateCustomerAsync(Customer customer)
         {
             if (customer == null) throw new ArgumentNullException(nameof(customer));
-            _context.Customers.Add(customer);
+            await _context.Customers.AddAsync(customer);
         }
 
-        public void DeleteCustomer(Customer customer)
+        public async Task DeleteCustomerAsync(Customer customer)
         {
             if (customer == null) throw new ArgumentNullException(nameof(customer));
             _context.Customers.Remove(customer);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void UpdateCustomer(Customer customer)
+        public async Task UpdateCustomerAsync(Customer customer)
         {
             if (customer == null) throw new ArgumentNullException(nameof(customer));
             _context.Customers.Update(customer);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

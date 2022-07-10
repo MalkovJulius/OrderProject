@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using OrderProject.Data.CustomerData;
 using OrderProject.Dtos;
 using OrderProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace OrderProject.Services.CustomerService
 {
@@ -19,45 +21,45 @@ namespace OrderProject.Services.CustomerService
             _mapper = mapper;
         }
 
-        public CustomerDto GetCustomerDtoById(int id)
+        public async Task<CustomerDto> GetCustomerDtoByIdAsync(int id)
         {
-            var customer = _customerRepo.GetCustomerById(id);
+            var customer = await _customerRepo.GetCustomerByIdAsync(id);
             return customer == null ?
                 throw new KeyNotFoundException(nameof(customer)):
                 _mapper.Map<CustomerDto>(customer);
         }
 
-        public IEnumerable<CustomerDto> GetAllCustomers()
+        public async Task<IEnumerable<CustomerDto>> GetAllCustomersAsync()
         {
-            var customers = _customerRepo.GetAllCustomers();
+            var customers = await _customerRepo.GetAllCustomers().ToListAsync();
             return _mapper.Map<IEnumerable<CustomerDto>>(customers);
         }
 
-        public void CreateCustomer(CustomerDto customerDto)
+        public async Task CreateCustomerAsync(CustomerDto customerDto)
         {
             if (customerDto == null) throw new ArgumentNullException(nameof(customerDto));
 
             var customer = _mapper.Map<Customer>(customerDto);
-            _customerRepo.CreateCustomer(customer);
+            await _customerRepo.CreateCustomerAsync(customer);
         }
 
-        public void UpdateCustomer(CustomerDto customerDto)
+        public async Task UpdateCustomerAsync(CustomerDto customerDto)
         {
             if (customerDto == null) throw new ArgumentNullException(nameof(customerDto));
 
-            var customer = _customerRepo.GetCustomerById(customerDto.Id);
+            var customer = await _customerRepo.GetCustomerByIdAsync(customerDto.Id);
             if(customer == null) throw new KeyNotFoundException(nameof(customer));
 
             _mapper.Map(customerDto, customer);
-            _customerRepo.UpdateCustomer(customer);
+            await _customerRepo.UpdateCustomerAsync(customer);
         }
 
-        public void DeleteCustomer(int id)
+        public async Task DeleteCustomerAsync(int id)
         {
-            var customer = _customerRepo.GetCustomerById(id);
+            var customer = await _customerRepo.GetCustomerByIdAsync(id);
             if (customer == null) throw new KeyNotFoundException(nameof(customer));
 
-            _customerRepo.DeleteCustomer(customer);
+            await _customerRepo.DeleteCustomerAsync(customer);
         }
     }
 }

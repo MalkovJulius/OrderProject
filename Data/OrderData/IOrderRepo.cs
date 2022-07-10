@@ -1,15 +1,15 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using OrderProject.Models;
 
 namespace OrderProject.Data.OrderData
 {
     public interface IOrderRepo
     {
-        //TODO: make everything asynchronous
         IQueryable<Order> GetAllOrders();
-        Order GetOrderById(int id);
-        void CreateOrder(Order order);
-        void UpdateOrder(Order order);
-        void DeleteOrder(Order order);
+        Task<Order> GetOrderByIdAsync(int id);
+        Task CreateOrderAsync(Order order);
+        Task UpdateOrderAsync(Order order);
+        Task DeleteOrderAsync(Order order);
     }
 }
