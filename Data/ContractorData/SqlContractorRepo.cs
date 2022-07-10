@@ -33,6 +33,7 @@ namespace OrderProject.Data.ContractorData
         {
             if (contractor == null) throw new ArgumentNullException(nameof(contractor));
             _context.Contractors.Remove(contractor);
+            _context.SaveChanges();
         }        
 
         public void UpdateContractor(Contractor contractor)

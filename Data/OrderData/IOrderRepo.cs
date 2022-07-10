@@ -5,6 +5,7 @@ namespace OrderProject.Data.OrderData
 {
     public interface IOrderRepo
     {
+        //TODO: make everything asynchronous
         IQueryable<Order> GetAllOrders();
         Order GetOrderById(int id);
         void CreateOrder(Order order);

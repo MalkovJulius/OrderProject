@@ -10,10 +10,6 @@ namespace OrderProject.Models
         [DisplayName("Description")]
         public string Description { get; set; }
 
-        /*[Required]
-        [DisplayName("OutsourcingCompany")]
-        public OutsourcingCompany OutsourcingCompany { get; set; }*/
-
         [Required]
         [DisplayName("Contractors")]
         public ICollection<Contractor> Contractors { get; set; }

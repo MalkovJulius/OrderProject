@@ -14,30 +14,31 @@ namespace OrderProject.Data.OutsourcingCompanyData
         }
         public IQueryable<OutsourcingCompany> GetAllOutsourcingCompanies()
         {
-            return _context.OutsourcingCompanyes;
+            return _context.OutsourcingCompanies;
         }
 
         public OutsourcingCompany GetOutsourcingCompanyById(int id)
         {
-            return _context.OutsourcingCompanyes.FirstOrDefault(oc => oc.Id == id);
+            return _context.OutsourcingCompanies.FirstOrDefault(oc => oc.Id == id);
         }
 
         public void CreateCompany(OutsourcingCompany outsourcingCompany)
         {
             if (outsourcingCompany == null) throw new ArgumentNullException(nameof(outsourcingCompany));
-            _context.OutsourcingCompanyes.Add(outsourcingCompany);
+            _context.OutsourcingCompanies.Add(outsourcingCompany);
         }
 
         public void DeleteCompany(OutsourcingCompany outsourcingCompany)
         {
             if (outsourcingCompany == null) throw new ArgumentNullException(nameof(outsourcingCompany));
-            _context.OutsourcingCompanyes.Remove(outsourcingCompany);
+            _context.OutsourcingCompanies.Remove(outsourcingCompany);
+            _context.SaveChanges();
         }
 
         public void UpdateCompany(OutsourcingCompany outsourcingCompany)
         {
             if (outsourcingCompany == null) throw new ArgumentNullException(nameof(outsourcingCompany));
-            _context.OutsourcingCompanyes.Update(outsourcingCompany);
+            _context.OutsourcingCompanies.Update(outsourcingCompany);
             _context.SaveChanges();
         }
     }

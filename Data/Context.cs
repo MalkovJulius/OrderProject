@@ -8,7 +8,7 @@ namespace OrderProject.Data
         public DbSet<Contractor> Contractors { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<OutsourcingCompany> OutsourcingCompanyes { get; set; }
+        public DbSet<OutsourcingCompany> OutsourcingCompanies { get; set; }
 
         public Context(DbContextOptions<Context> dbContext) : base(dbContext)
         {

@@ -33,6 +33,7 @@ namespace OrderProject.Data.CustomerData
         {
             if (customer == null) throw new ArgumentNullException(nameof(customer));
             _context.Customers.Remove(customer);
+            _context.SaveChanges();
         }
 
         public void UpdateCustomer(Customer customer)

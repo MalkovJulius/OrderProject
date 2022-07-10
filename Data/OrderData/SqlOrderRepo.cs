@@ -33,6 +33,7 @@ namespace OrderProject.Data.OrderData
         {
             if (order == null) throw new ArgumentNullException(nameof(order));
             _context.Orders.Remove(order);
+            _context.SaveChanges();
         }              
 
         public void UpdateOrder(Order order)

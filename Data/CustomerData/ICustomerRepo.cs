@@ -5,6 +5,7 @@ namespace OrderProject.Data.CustomerData
 {
     public interface ICustomerRepo
     {
+        //TODO: make everything asynchronous
         IQueryable<Customer> GetAllCustomers();
         Customer GetCustomerById(int id);
         void CreateCustomer(Customer customer);

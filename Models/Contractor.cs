@@ -12,5 +12,17 @@ namespace OrderProject.Models
 
         [DisplayName("Order")]
         public Order Order { get; set; }
+
+        [Required]
+        [DisplayName("Position")]
+        public Position Position { get; set; }
+    }
+
+    public enum Position
+    {
+        Manager = 10,
+        Developer = 20,
+        QA = 30,
+        Analytic = 40
     }
 }

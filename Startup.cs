@@ -13,6 +13,10 @@ using OrderProject.Data.CustomerData;
 using OrderProject.Data.OrderData;
 using OrderProject.Data.OutsourcingCompanyData;
 using OrderProject.Middlewares;
+using OrderProject.Services.ContractorService;
+using OrderProject.Services.CustomerService;
+using OrderProject.Services.OrderService;
+using OrderProject.Services.OutsourcingCompanyService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +47,11 @@ namespace OrderProject
             services.AddScoped<IContractorRepo, SqlContractorRepo>();
             services.AddScoped<IOrderRepo, SqlOrderRepo>();
             services.AddScoped<IOutsourcingCompanyRepo, SqlOutsourcingCompanyRepo>();
+            
+            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<IContractorService, ContractorService>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IOutsourcingCompanyService, OutsourcingCompanyService>();
         }
                 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
