@@ -79,9 +79,9 @@ namespace OrderProject.Controllers
                 await _service.UpdateContractorAsync(contractorDto);
                 return NoContent();
             }
-            catch (KeyNotFoundException)
+            catch (KeyNotFoundException e)
             {
-                return NotFound();
+                return NotFound(e.Message);
             }
             catch (Exception e)
             {
