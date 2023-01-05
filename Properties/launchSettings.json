@@ -12,18 +12,20 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "orderproject",
+      //"launchUrl": "orderproject",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"
       }
     },
     "OrderProject": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "orderproject",
-      "applicationUrl": "http://localhost:5000",
+      //"launchUrl": "orderproject",
+      "applicationUrl": "http://localhost:44405",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"
       }
     }
   }
