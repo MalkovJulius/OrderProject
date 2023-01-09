@@ -1,6 +1,14 @@
-import { Counter } from "./components/Counter";
-import { FetchData } from "./components/FetchData";
-import { Home } from "./components/Home";
+import Home from "./pages/Home";
+import Order from "./pages/Order";
+import Orders from "./pages/Orders";
+import Profile from "./pages/Profile";
+import Clients from "./pages/Clients";
+import Company from "./pages/Company";
+import Contractors from "./pages/Contractors";
+import Customer from "./pages/Customer";
+import Login from "./pages/Login";
+import Error from "./pages/Error";
+import Companies from "./pages/Companies";
 
 const AppRoutes = [
   {
@@ -8,12 +16,44 @@ const AppRoutes = [
     element: <Home />
   },
   {
-    path: '/counter',
-    element: <Counter />
+    path: '/profile',
+    element: <Profile/>
   },
   {
-    path: '/fetch-data',
-    element: <FetchData />
+    path: '/order',
+    element: <Order/>
+  },
+  {
+    path: '/orders',
+    element: <Orders/>
+  },
+  {
+    path: '/customer',
+    element: <Customer/>
+  },
+  {
+    path: '/clients',
+    element: <Clients/>
+  },
+  {
+    path: '/company',
+    element: <Company/>
+  },  
+  {
+    path: '/companies',
+    element: <Companies/>
+  },
+  {
+    path: '/contractor',
+    element: <Contractors/>
+  },
+  {
+    path: '/login',
+    element: <Login/>
+  },
+  {
+    path: '/error',
+    element: <Error/>
   }
 ];
 
